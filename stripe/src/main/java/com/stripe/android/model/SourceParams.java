@@ -105,13 +105,18 @@ public class SourceParams {
     }
 
     /**
-     * Create parameters used to generate a reusable Alipay source.
+     * Create parameters necessary for creating a reusable Alipay source.
      *
-     * @param currency the currency code that this source will be charged in
-     * @param name the user's name
-     * @param email the user's email
-     * @param returnUrl a url used to reopen the application
+     * @param currency The currency of the payment. Must be the default currency for your country.
+     *                 Can be aud, cad, eur, gbp, hkd, jpy, nzd, sgd, or usd. Users in Denmark,
+     *                 Norway, Sweden, or Switzerland must use eur.
+     * @param name The name of the account holder (optional).
+     * @param email The email address of the account holder (optional).
+     * @param returnUrl The URL the customer should be redirected to after the authorization
+     *                 process.
      * @return a {@link SourceParams} that can be used to create an Alipay reusable source
+     *
+     * @see <a href="https://stripe.com/docs/sources/alipay">https://stripe.com/docs/sources/alipay</a>
      */
     public static SourceParams createAlipayReusableParams(
             @NonNull String currency,
@@ -136,14 +141,20 @@ public class SourceParams {
     }
 
     /**
-     * Create a source to be used with the Alipay SDK for single-use payments.
+     * Create parameters necessary for creating a single use Alipay source.
      *
-     * @param amount the amount of the purchase
-     * @param currency the currency code of the purchase
-     * @param name the user's name
-     * @param email the user's email
-     * @param returnUrl the return url to reopen the activity
+     * @param amount A positive integer in the smallest currency unit representing the amount to
+     *              charge the customer (e.g., 1099 for a $10.99 payment).
+     * @param currency The currency of the payment. Must be the default currency for your country.
+     *                Can be aud, cad, eur, gbp, hkd, jpy, nzd, sgd, or usd. Users in Denmark,
+     *                Norway, Sweden, or Switzerland must use eur.
+     * @param name The name of the account holder (optional).
+     * @param email The email address of the account holder (optional).
+     * @param returnUrl The URL the customer should be redirected to after the authorization
+     *                 process.
      * @return a {@link SourceParams} that can be used to create an Alipay single-use source
+     *
+     * @see <a href="https://stripe.com/docs/sources/alipay">https://stripe.com/docs/sources/alipay</a>
      */
     @NonNull
     public static SourceParams createAlipaySingleUseParams(
@@ -170,13 +181,18 @@ public class SourceParams {
     }
 
     /**
-     * Create a set of parameters used for a Bancontact source.
+     * Create parameters necessary for creating a Bancontact source.
      *
-     * @param amount amount to be charged
-     * @param name account owner name
-     * @param returnUrl a URL redirect
-     * @param statementDescriptor a description of the transaction to put on the customer statement
+     * @param amount A positive integer in the smallest currency unit representing the amount to
+     *              charge the customer (e.g., 1099 for a €10.99 payment). The charge amount must be
+     *              at least €1 or its equivalent in the given currency.
+     * @param name The full name of the account holder.
+     * @param returnUrl The URL the customer should be redirected to after the authorization
+     *                 process.
+     * @param statementDescriptor A custom statement descriptor for the payment (optional).
      * @return a {@link SourceParams} object that can be used to create a Bancontact source
+     *
+     * @see <a href="https://stripe.com/docs/sources/bancontact">https://stripe.com/docs/sources/bancontact</a>
      */
     @NonNull
     public static SourceParams createBancontactParams(
@@ -212,10 +228,12 @@ public class SourceParams {
     }
 
     /**
-     * Create a set of parameters for a credit card source.
+     * Create parameters necessary for creating a card source.
      *
-     * @param card a {@link Card} object containing the details necessary for the source
-     * @return a {@link SourceParams} object that can be used to create a card source
+     * @param card A {@link Card} object containing the details necessary for the source.
+     * @return a {@link SourceParams} object that can be used to create a card source.
+     *
+     * @see <a href="https://stripe.com/docs/sources/cards">https://stripe.com/docs/sources/cards</a>
      */
     @NonNull
     public static SourceParams createCardParams(@NonNull Card card) {
@@ -292,11 +310,14 @@ public class SourceParams {
     /**
      * Create parameters necessary for creating a Giropay source
      *
-     * @param amount amount of the transaction
-     * @param name source owner name
-     * @param returnUrl redirect URL
-     * @param statementDescriptor a description of the transaction
+     * @param amount A positive integer in the smallest currency unit representing the amount to
+     *              charge the customer (e.g., 1099 for a €10.99 payment).
+     * @param name The full name of the account holder.
+     * @param returnUrl The URL the customer should be redirected to after the authorization process.
+     * @param statementDescriptor A custom statement descriptor for the payment (optional).
      * @return a {@link SourceParams} object that can be used to create a Giropay source
+     *
+     * @see <a href="https://stripe.com/docs/sources/giropay">https://stripe.com/docs/sources/giropay</a>
      */
     @NonNull
     public static SourceParams createGiropayParams(
@@ -321,14 +342,16 @@ public class SourceParams {
     }
 
     /**
-     * Create parameters needed to make an iDEAL source.
+     * Create parameters necessary for creating an iDEAL source.
      *
-     * @param amount amount of the transaction
-     * @param name owner name
-     * @param returnUrl redirect URL
-     * @param statementDescriptor a description of the transaction
-     * @param bank bank id for the iDEAL source
+     * @param amount A positive integer in the smallest currency unit representing the amount to charge the customer (e.g., 1099 for a €10.99 payment).
+     * @param name The full name of the account holder (optional).
+     * @param returnUrl The URL the customer should be redirected to after the authorization process.
+     * @param statementDescriptor A custom statement descriptor for the payment (optional).
+     * @param bank The customer’s bank (optional).
      * @return a {@link SourceParams} object that can be used to create an iDEAL source
+     *
+     * @see <a href="https://stripe.com/docs/sources/ideal">https://stripe.com/docs/sources/ideal</a>
      */
     @NonNull
     public static SourceParams createIdealParams(
